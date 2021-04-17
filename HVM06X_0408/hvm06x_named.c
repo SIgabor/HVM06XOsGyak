@@ -8,7 +8,7 @@ int main() {
     int child;
 
 
-    mkfifo("fifo_teszt", S_IRUSR | S_IWUSR );
+    mkfifo("file", S_IRUSR | S_IWUSR );
 
     child = fork();
 
@@ -17,17 +17,17 @@ int main() {
         int fd;
 
 
-        fd = open("fifo_teszt", O_RDONLY);
+        fd = open("file", O_RDONLY);
         read(fd, s, sizeof(s));
         printf("%s", s);
 
         close(fd);
-        unlink("fifo_teszt");
+        unlink("file");
     } else if(child == 0) {
         int fd;
 
 
-        fd = open("fifo_teszt", O_WRONLY);
+        fd = open("file", O_WRONLY);
         write(fd, "Slyízs István Gábor\n", 30);
         close(fd);
     }
