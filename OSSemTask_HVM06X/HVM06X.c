@@ -24,13 +24,13 @@ int main()
     int pid9 = fork();
     int pid10 = fork();
 
-    if(pid1 == 0){
+    if(pid1 == 0){ //a magyarázat pid1-től pid10-ig azonos, így csak itt magyaráznám. A parent megyarázata a 366. sorban kezdődik.
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 2; j++){
-                if(i == 1 && j == 1){
+                if(i == 0 && j == 0){ //az i és j megadásával nyitva marad a kívánt pipe
                     continue;
                 }
-                else if(i == 3 && j == 0){
+                else if(i == 1 && j == 1){ //az i és j megadásával nyitva marad a kívánt pipe
                     continue;
                 }
                 close(fd[i][j]);
@@ -42,19 +42,19 @@ int main()
         int tomb1[100];  // "kapott" tomb
 
         for(int i = 0; i<100; i++){
-            read(fd[0][0], &tomb1[i], sizeof(int));
+            read(fd[0][0], &tomb1[i], sizeof(int)); //itt történik a tömb beolvasása és eltárolása egy másik tömbben
             tomb[i] = tomb1[i];
         }
         int max1 = 0;
-        for(int j = 0; j < 100; j++){
+        for(int j = 0; j < 100; j++){ //itt a maximum kiszámítása történik
             if(tomb[j] > max1){
                 max1 = tomb[j];
             }
         }
 
-        write(fd[1][1], &max1, sizeof(int));
+        write(fd[1][1], &max1, sizeof(int)); // a maximum visszaküldése
         close(fd[0][0]);
-        close(fd[1][1]);
+        close(fd[1][1]); //a nyitva maradt pipeok bezárása
         return 0;
     }
 
@@ -63,10 +63,10 @@ int main()
     else if(pid2 == 0){
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 2; j++){
-                if(i == 1 && j == 1){
+                if(i == 2 && j == 0){
                     continue;
                 }
-                else if(i == 3 && j == 0){
+                else if(i == 3 && j == 1){
                     continue;
                 }
                 close(fd[i][j]);
@@ -97,10 +97,10 @@ int main()
     else if(pid3 == 0){
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 2; j++){
-                if(i == 1 && j == 1){
+                if(i == 4 && j == 0){
                     continue;
                 }
-                else if(i == 3 && j == 0){
+                else if(i == 5 && j == 1){
                     continue;
                 }
                 close(fd[i][j]);
@@ -130,10 +130,10 @@ int main()
     else if(pid4 == 0){
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 2; j++){
-                if(i == 1 && j == 1){
+                if(i == 6 && j == 0){
                     continue;
                 }
-                else if(i == 3 && j == 0){
+                else if(i == 7 && j == 1){
                     continue;
                 }
                 close(fd[i][j]);
@@ -164,10 +164,10 @@ int main()
     else if(pid5 == 0){
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 2; j++){
-                if(i == 1 && j == 1){
+                if(i == 8 && j == 0){
                     continue;
                 }
-                else if(i == 3 && j == 0){
+                else if(i == 9 && j == 1){
                     continue;
                 }
                 close(fd[i][j]);
@@ -198,10 +198,10 @@ int main()
     else if(pid6 == 0){
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 2; j++){
-                if(i == 1 && j == 1){
+                if(i == 10 && j == 0){
                     continue;
                 }
-                else if(i == 3 && j == 0){
+                else if(i == 11 && j == 1){
                     continue;
                 }
                 close(fd[i][j]);
@@ -231,10 +231,10 @@ int main()
     else if(pid7 == 0){
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 2; j++){
-                if(i == 1 && j == 1){
+                if(i == 12 && j == 0){
                     continue;
                 }
-                else if(i == 3 && j == 0){
+                else if(i == 13 && j == 1){
                     continue;
                 }
                 close(fd[i][j]);
@@ -265,10 +265,10 @@ int main()
     else if(pid8 == 0){
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 2; j++){
-                if(i == 1 && j == 1){
+                if(i == 14 && j == 0){
                     continue;
                 }
-                else if(i == 3 && j == 0){
+                else if(i == 15 && j == 1){
                     continue;
                 }
                 close(fd[i][j]);
@@ -298,10 +298,10 @@ int main()
     else if(pid9 == 0){
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 2; j++){
-                if(i == 1 && j == 1){
+                if(i == 16 && j == 0){
                     continue;
                 }
-                else if(i == 3 && j == 0){
+                else if(i == 17 && j == 1){
                     continue;
                 }
                 close(fd[i][j]);
@@ -331,10 +331,10 @@ int main()
     else if(pid10 == 0){
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 2; j++){
-                if(i == 1 && j == 1){
+                if(i == 18 && j == 0){
                     continue;
                 }
-                else if(i == 3 && j == 0){
+                else if(i == 19 && j == 1){
                     continue;
                 }
                 close(fd[i][j]);
@@ -355,7 +355,6 @@ int main()
                 max10 = tomb[j];
             }
         }
-        printf("\n tomb 10 elso eleme %d\n", tomb10[0]);
 
         write(fd[19][1], &max10, sizeof(int));
         close(fd[18][0]);
@@ -366,7 +365,7 @@ int main()
 
     //Parent process
     else{
-    for(int i = 0; i < 20; i++){
+    for(int i = 0; i < 20; i++){ //a nem használt pipe végék bezárása
         if(i % 2 != 0){
             close(fd[i][1]);
         }
@@ -377,10 +376,9 @@ int main()
 
     int nagyTomb[1000];
 
-    for(int i = 0; i < 1000; i++){
+    for(int i = 0; i < 1000; i++){ //random szám generálás
         nagyTomb[i] = (rand() % (100 - 0 +1)) + 0;
     }
-    printf("\n nagytomb elso eleme %d\n", nagyTomb[0]);
 
     int tomb1[100];
     int tomb2[100];
@@ -414,7 +412,7 @@ int main()
     int max8;
     int max9;
     int max10;
-
+//alább történik a tömb szétosztása ebben az orbitális for ciklusban
     for(a=0, b=100, c=200, d=300, e=400, f=500, g=600, h=700, i=800, j=900; a<100, b<200, c<300, d<400, e<500, f<600, g<700, h<800, i<900, j<1000; a++, b++, c++, d++, e++, f++, g++, h++, i++, j++){
         tomb1[a] = nagyTomb[a];
         tomb2[a] = nagyTomb[b];
@@ -429,7 +427,7 @@ int main()
 
     }
 
-
+//alább történik a tömbök elküldése az egyes processzeknek
         write(fd[0][1], tomb1, sizeof(int) * 100);
         write(fd[2][1], tomb2, sizeof(int) * 100);
         write(fd[4][1], tomb3, sizeof(int) * 100);
@@ -442,13 +440,13 @@ int main()
         write(fd[18][1], tomb10, sizeof(int) * 100);
 
 
-        for(int i = 0; i<20; i++){
+        for(int i = 0; i<20; i++){ //az imént használt pipe végek bezárása
             if(i % 2 == 0){
             close(fd[i][1]);
         }
     }
 
-
+//alább történik a maximumok kiolvasása
         read(fd[1][0], &max1, sizeof(int));
         read(fd[3][0], &max2, sizeof(int));
         read(fd[5][0], &max3, sizeof(int));
@@ -464,11 +462,12 @@ int main()
 
     int maximumokTomb[10] = {max1, max2, max3, max4, max5, max6, max7, max8, max9, max10};
 
-    for(int i = 0; i<20; i++){
+    for(int i = 0; i<20; i++){ //az imént használt pipe végek bezárása
         if(i % 2 != 0){
             close(fd[i][0]);
         }
     }
+    //itt várja meg a szülő a gyermekeit
     waitpid(pid1, NULL, 0);
     waitpid(pid2, NULL, 0);
     waitpid(pid3, NULL, 0);
@@ -480,13 +479,10 @@ int main()
     waitpid(pid9, NULL, 0);
     waitpid(pid10, NULL, 0);
 
-    printf("\nMaximum elemek: \n");
+    printf("\nMaximum elemek: \n"); //maximum értékek kiírása
     for(int i = 0; i<10; i++){
         printf("%d\t", maximumokTomb[i]);
     }
-printf("\n tomb1 elso elem %d ", tomb1[0]);
-
-
     return 0;
     }
 }
